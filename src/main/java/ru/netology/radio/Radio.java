@@ -2,21 +2,21 @@ package ru.netology.radio;
 
 public class Radio {
 
-    private int radioStation;
-    private int volume;
+    private Integer radioStation;
+    private Integer volume;
 
-    public int getRadioStation() {
+    public Integer getRadioStation() {
         return radioStation;
     }
 
     public void setRadioStation(int RadioStation) {
-        if (RadioStation < 0) {
-            return;
+        if (RadioStation < 0 || RadioStation > 9) {
+            radioStation = null;
         }
-        if (RadioStation > 9) {
-            return;
+        else {
+            this.radioStation = RadioStation;
         }
-        this.radioStation = RadioStation;
+
     }
 
     public void nextStation() {
@@ -37,30 +37,31 @@ public class Radio {
         }
     }
 
-    public int getVolume() {
+    public Integer getVolume() {
         return volume;
     }
 
     public void setVolume(int volume) {
-        if (volume < 0) {
-            return;
+        if (volume < 0 || volume > 10) {
+            this.volume = null;
         }
-        if (volume > 9) {
-            return;
+        else {
+            this.volume = volume;
         }
-        this.volume = volume;
+
     }
 
-    public void maxVolume() {
-        if (volume == 9) {
+    public void increaseVolume() {
+        if (volume < 10) {
+            volume = volume + 1;
             setVolume(volume);
         }
     }
 
-    public void minVolume() {
-        if (volume == 0) {
+    public void decreaseVolume() {
+        if (volume > 0) {
+            volume = volume - 1;
             setVolume(volume);
-
         }
     }
 }
