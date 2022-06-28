@@ -4,6 +4,20 @@ public class Radio {
 
     private Integer radioStation;
     private Integer volume;
+    private Integer maxStation = 10;
+    private Integer minStation = 0;
+    private Integer numberRadioStations;
+    private  Integer maxVolume = 100;
+    private  Integer minVolume = 0;
+
+    public Radio(Integer numberRadioStations) {
+        this.radioStation = numberRadioStations;
+    }
+    public  Radio(){
+
+    }
+
+
 
     public Integer getRadioStation() {
         return radioStation;
@@ -13,6 +27,9 @@ public class Radio {
         if (RadioStation < 0 || RadioStation > 9) {
             radioStation = null;
         }
+        if (RadioStation == 10) {
+            radioStation = 9;
+        }
         else {
             this.radioStation = RadioStation;
         }
@@ -21,19 +38,13 @@ public class Radio {
 
     public void nextStation() {
         if (radioStation == 9) {
-            radioStation = 0;
-        } else {
-            radioStation = radioStation + 1;
-            setRadioStation(radioStation);
+            radioStation = minStation;
         }
     }
 
     public void prevStation() {
         if (radioStation == 0) {
-            radioStation = 9;
-        } else {
-            radioStation = radioStation - 1;
-            setRadioStation(radioStation);
+            radioStation = maxStation;
         }
     }
 
@@ -42,7 +53,7 @@ public class Radio {
     }
 
     public void setVolume(int volume) {
-        if (volume < 0 || volume > 10) {
+        if (volume < minVolume || volume > maxVolume) {
             this.volume = null;
         }
         else {
@@ -52,16 +63,14 @@ public class Radio {
     }
 
     public void increaseVolume() {
-        if (volume < 10) {
-            volume = volume + 1;
-            setVolume(volume);
+        if (volume == maxVolume) {
+            this.volume = null;
         }
     }
 
     public void decreaseVolume() {
-        if (volume > 0) {
-            volume = volume - 1;
-            setVolume(volume);
+        if (volume == minVolume) {
+            this.volume = null;
         }
     }
 }
