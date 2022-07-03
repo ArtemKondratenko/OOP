@@ -4,36 +4,47 @@ public class Radio {
 
     private Integer radioStation;
     private Integer volume;
+    private Integer minStation = 0;
+    private Integer numberRadioStations = 10;
+    private Integer maxStation = numberRadioStations - 1;
+    private Integer maxVolume = 100;
+    private Integer minVolume = 0;
+
+    public Radio(Integer numberRadioStations) {
+        this.numberRadioStations = numberRadioStations;
+    }
+
+    public Radio() {
+    }
+
+    public Integer getNumberRadioStations() {
+        return numberRadioStations;
+    }
 
     public Integer getRadioStation() {
         return radioStation;
     }
 
-    public void setRadioStation(int RadioStation) {
-        if (RadioStation < 0 || RadioStation > 9) {
-            radioStation = null;
+    public void setRadioStation(int radioStation) {
+        if (radioStation < 0 || radioStation >= numberRadioStations) {
+            radioStation = 0;
         }
-        else {
-            this.radioStation = RadioStation;
-        }
-
+        this.radioStation = radioStation;
     }
 
     public void nextStation() {
-        if (radioStation == 9) {
-            radioStation = 0;
+        if (radioStation == numberRadioStations - 1) {
+            radioStation = minStation;
         } else {
-            radioStation = radioStation + 1;
-            setRadioStation(radioStation);
+            radioStation++;
         }
     }
 
     public void prevStation() {
         if (radioStation == 0) {
-            radioStation = 9;
+            radioStation = maxStation;
         } else {
-            radioStation = radioStation - 1;
-            setRadioStation(radioStation);
+            radioStation--;
         }
     }
 
@@ -42,26 +53,22 @@ public class Radio {
     }
 
     public void setVolume(int volume) {
-        if (volume < 0 || volume > 10) {
-            this.volume = null;
-        }
-        else {
+        if (volume < minVolume || volume > maxVolume) {
+            this.volume = 0;
+        } else {
             this.volume = volume;
         }
-
     }
 
     public void increaseVolume() {
-        if (volume < 10) {
-            volume = volume + 1;
-            setVolume(volume);
+        if (volume < maxVolume) {
+            this.volume++;
         }
     }
 
     public void decreaseVolume() {
-        if (volume > 0) {
-            volume = volume - 1;
-            setVolume(volume);
+        if (volume > minVolume) {
+            this.volume--;
         }
     }
 }
