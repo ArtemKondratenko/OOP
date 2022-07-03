@@ -17,10 +17,18 @@ public class RadioTest {
         assertEquals(expected, actual);
         rad.setRadioStation(10);
         actual = rad.getRadioStation();
-        assertNull(actual);
+        assertEquals(0, actual);
         rad.setRadioStation(-1);
         actual = rad.getRadioStation();
-        assertNull(actual);
+        assertEquals(0, actual);
+    }
+
+    @Test
+    @DisplayName("проверка установки кол-во станций")
+    public void numberRadioStationTest(){
+        Radio rad = new Radio(20);
+        Integer actual = rad.getNumberRadioStations();
+        assertEquals(20,actual);
     }
 
     @Test
@@ -38,9 +46,9 @@ public class RadioTest {
         actual = rad.getRadioStation();
         assertEquals(expected, actual);
         rad.setRadioStation(-2);
-        assertThrows(NullPointerException.class, rad::nextStation);
+        assertEquals(0,rad.getRadioStation());
         rad.setRadioStation(10);
-        assertThrows(NullPointerException.class, rad::nextStation);
+        assertEquals(0,rad.getRadioStation());
     }
 
     @Test
@@ -58,10 +66,9 @@ public class RadioTest {
         actual = rad.getRadioStation();
         assertEquals(expected,actual);
         rad.setRadioStation(-1);
-        assertThrows(NullPointerException.class,rad::prevStation);
+        assertEquals(0,rad.getRadioStation());
         rad.setRadioStation(11);
-        assertThrows(NullPointerException.class,rad::prevStation);
-
+        assertEquals(0,rad.getRadioStation());
     }
     @Test
     public void limitVolume() {
@@ -77,7 +84,7 @@ public class RadioTest {
         Radio radio = new Radio();
         radio.setVolume(10);
         radio.increaseVolume();
-        int expected = 10;
+        int expected = 11;
         int actual = radio.getVolume();
         assertEquals(expected, actual);
         radio.setVolume(7);
@@ -86,10 +93,9 @@ public class RadioTest {
         actual = radio.getVolume();
         assertEquals(expected, actual);
         radio.setVolume(-1);
-        assertThrows(NullPointerException.class, radio::increaseVolume);
-        radio.setVolume(11);
-        assertThrows(NullPointerException.class, radio::increaseVolume);
-
+        assertEquals(0,radio.getVolume());
+        radio.setVolume(101);
+        assertEquals(0,radio.getVolume());
     }
 
     @Test
@@ -106,9 +112,9 @@ public class RadioTest {
         actual = radio.getVolume();
         assertEquals(expected, actual);
         radio.setVolume(-1);
-        assertThrows(NullPointerException.class, radio::decreaseVolume);
-        radio.setVolume(11);
-        assertThrows(NullPointerException.class, radio::decreaseVolume);
+        assertEquals(0,radio.getVolume());
+        radio.setVolume(101);
+        assertEquals(0,radio.getVolume());
 
     }
 

@@ -17,6 +17,9 @@ public class Radio {
     public Radio() {
     }
 
+    public Integer getNumberRadioStations() {
+        return numberRadioStations;
+    }
 
     public Integer getRadioStation() {
         return radioStation;
@@ -32,12 +35,16 @@ public class Radio {
     public void nextStation() {
         if (radioStation == numberRadioStations - 1) {
             radioStation = minStation;
+        } else {
+            radioStation++;
         }
     }
 
     public void prevStation() {
         if (radioStation == 0) {
             radioStation = maxStation;
+        } else {
+            radioStation--;
         }
     }
 
