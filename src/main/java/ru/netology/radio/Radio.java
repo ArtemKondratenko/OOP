@@ -2,18 +2,17 @@ package ru.netology.radio;
 
 public class Radio {
 
-    private Integer radioStation;
-    private Integer volume;
+    private int radioStation;
+    private int volume;
 
-    public Integer getRadioStation() {
+    public int getRadioStation() {
         return radioStation;
     }
 
-    public void setRadioStation(int RadioStation) {
+    public void setRadioStation(int radioStation) {
         if (RadioStation < 0 || RadioStation > 9) {
             radioStation = null;
-        }
-        else {
+        } else {
             this.radioStation = RadioStation;
         }
 
