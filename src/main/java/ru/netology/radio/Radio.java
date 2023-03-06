@@ -9,13 +9,13 @@ public class Radio {
         return radioStation;
     }
 
-    public void setRadioStation(int radioStation) {
-        if (RadioStation < 0 || RadioStation > 9) {
-            radioStation = null;
-        } else {
-            this.radioStation = RadioStation;
-        }
 
+    public void setRadioStation(int radioStation) {
+        if(radioStation < 0 || radioStation > 9) {
+            return;
+        } else {
+            this.radioStation = radioStation;
+        }
     }
 
     public void nextStation() {
@@ -36,25 +36,25 @@ public class Radio {
         }
     }
 
-    public Integer getVolume() {
+    public int getVolume() {
         return volume;
     }
 
     public void setVolume(int volume) {
         if (volume < 0 || volume > 10) {
-            this.volume = null;
+            return;
         }
         else {
             this.volume = volume;
         }
-
     }
 
     public void increaseVolume() {
-        if (volume < 10) {
-            volume = volume + 1;
-            setVolume(volume);
+        if (volume == 10) {
+            return;
         }
+        volume = volume + 1;
+        setVolume(volume);
     }
 
     public void decreaseVolume() {
