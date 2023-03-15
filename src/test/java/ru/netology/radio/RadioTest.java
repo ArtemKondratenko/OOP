@@ -20,27 +20,34 @@ public class RadioTest {
     @DisplayName("проверка пределов номера радиостанции")
     public void maxlimitRadioStation() {
         Radio rad = new Radio();
-        rad.setRadioStation(10);
-        Assertions.assertEquals(9,rad.getRadioStation());
+        rad.setRadioStation(11);
+        Assertions.assertEquals(9, rad.getRadioStation());
     }
 
     @Test
-    public  void setNormalMinLimit() {
+    public void setNormalMinLimit() {
         Radio rad = new Radio();
         rad.setRadioStation(0);
-        Assertions.assertEquals(0,rad.getRadioStation());
+        Assertions.assertEquals(0, rad.getRadioStation());
     }
 
     @Test
-    public  void setNormalMaxLimit() {
+    public void setNormalMaxLimit() {
         Radio rad = new Radio();
         rad.setRadioStation(9);
-        Assertions.assertEquals(9,rad.getRadioStation());
+        Assertions.assertEquals(9, rad.getRadioStation());
+    }
+
+    @Test
+    public void  setStation20() {
+        Radio radio = new Radio(20);
+        radio.setRadioStation(15);
+        Assertions.assertEquals(15, radio.getRadioStation());
     }
 
 
     @Test
-    public  void minLimitRadioStation() {
+    public void minLimitRadioStation() {
         Radio rad = new Radio();
         rad.setRadioStation(-1);
         Assertions.assertEquals(0, rad.getRadioStation());
@@ -90,15 +97,15 @@ public class RadioTest {
     }
 
     @Test
-    public void  maxVolume() {
+    public void maxVolume() {
         Radio volume = new Radio();
         volume.setVolume(101);
         int expected = 0;
-        Assertions.assertEquals(0,volume.getVolume());
+        Assertions.assertEquals(0, volume.getVolume());
     }
 
     @Test
-    public  void  minVolume() {
+    public void minVolume() {
         Radio volume = new Radio();
         volume.setVolume(-1);
         int expected = 0;
@@ -114,7 +121,7 @@ public class RadioTest {
     }
 
     @Test
-    public  void checkPlusVolumeMax() {
+    public void checkPlusVolumeMax() {
         Radio volume = new Radio();
         volume.setVolume(100);
         volume.increaseVolume();
@@ -122,12 +129,13 @@ public class RadioTest {
     }
 
     @Test
-    public  void checkMinVolumeMin() {
+    public void checkMinVolumeMin() {
         Radio volume = new Radio();
         volume.setVolume(0);
         volume.decreaseVolume();
-        Assertions.assertEquals(0,volume.getVolume());
+        Assertions.assertEquals(0, volume.getVolume());
     }
+
     @Test
     public void checkNegativeVolume() {
         Radio volume = new Radio();
