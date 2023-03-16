@@ -11,6 +11,7 @@ public class Radio {
 
     public Radio(int desiredNumberRadioStations) {
         this.radioStation = desiredNumberRadioStations;
+        this.maxRadioStation = desiredNumberRadioStations-1;
     }
 
     public Radio() {
@@ -21,8 +22,8 @@ public class Radio {
     }
 
     public void setRadioStation(int radioStation) {
-        if (radioStation > this.radioStation) {
-            this.radioStation = this.radioStation-1;
+        if (radioStation > maxRadioStation) {
+            this.radioStation = maxRadioStation;
         } else if (radioStation < minRadioStation) {
             this.radioStation = minRadioStation;
         } else {

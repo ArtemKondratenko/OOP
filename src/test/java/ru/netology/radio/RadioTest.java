@@ -41,6 +41,7 @@ public class RadioTest {
     @Test
     public void  setStation20() {
         Radio radio = new Radio(20);
+        radio.setRadioStation(5);
         radio.setRadioStation(15);
         Assertions.assertEquals(15, radio.getRadioStation());
     }
